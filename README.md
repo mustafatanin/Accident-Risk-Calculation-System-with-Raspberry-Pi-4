@@ -1,57 +1,30 @@
 # Accident-Risk-Calculation-System
 
-•	ÖZET
-Öncelikle çeşitli sensörler kullanarak bunlardan aldığımız veriyi işleyerek bize kaza riskini hesaplamasını planladığımız bir sistem oluşturmayı hedefledik. Bunun için 6 tane sensör/modül ve bir adet kamera(webcam) kullandık. Veriyi aldığımız sensör/modüllerin haricinde elde ettiğimiz risk verisini görsel bir çıktıya dönüştürmek için programlanabilir bir RGB led kullandık. Ve sesli uyarı almak için de bir adet buzzer kullanarak projenin ana şemasını oluşturduk.
+• SUMMARY
+Firstly, we aimed to create a system that calculates the risk of accident by processing data obtained from various sensors. To do this, we used 6 sensors/modules and one camera (webcam). In addition to the sensors/modules we used to collect data, we used a programmable RGB LED to convert the risk data we obtained into a visual output, and we used a buzzer to receive audio alerts. We created the main schematic of the project using these components.
 
+• INTRODUCTION: What I wanted to do
+Here, what we primarily aimed to do was to design something that had not been done before. Instead of making a project that you could easily do by obtaining ready-made source codes on the internet, we aimed to produce an original product. For example, the GPS module we used is not even a module produced for Raspberry, but we were able to make it work and calculate speed despite the limited resources we found on the internet for this sensor produced for Arduino. In addition to this, to explain the main goal of the project, we aimed to calculate the risk and warn the driver using 6 sensors/modules and one camera (Webcam) in our project. While doing this, we also aimed to adapt the project completely to real life, which is why we applied the project on a real car instead of any model or mock-up. We didn't find it correct to implement the project on any mock-up or model. We tried to produce a product that could be used as much as possible in real life.
 
+• APPLICATION: What did you do, with what, and how...
+First of all, let's start by listing all the sensors and modules we used:
 
-•	GİRİŞ: Ben ne yapmak istedim
-Burada esas yapmak istediğimiz daha önce yapılmamış bir şey tasarlamak oldu. İnternette hazır kaynak kodları olan malzemesini temin ettiğiniz takdirde çok rahatlıkla yapabileceğiniz bir proje yapmayı değil özgün bir ürün ortaya çıkarmayı hedefledik. Örneğin kullandığımız GPS modülü Raspberry için üretilmiş bir modül bile değil. Biz Arduino için üretilmiş bu sensörü internette bulunan çok az kaynağa rağmen çalıştırıp hız hesaplamayı başardık. Bunun dışında projenin temel gayesini açıklamak gerekirse projemizde 6 tane sensör/modül ile bir adet kamera(Webcam) kullanarak  risk hesaplamayı ve bu hesaplanan risk ile sürücüyü ikaz etmeyi hedefledik. Bunları yaparken de tamamen gerçek hayata uyarlanabilir şekilde yapmaya gayret gösterdik dolayısıyla da projemizi gerçek bir otomobil üzerinde uyguladık. Projemizi herhangi bir maket veya mock-up üzerinde uygulamayı doğru bulmadık. Olabildiğince gerçek hayatta kullanılabilir bir ürün ortaya çıkarmaya çalıştık. 
+• Gy-NEO6MV2 GPS Module - Flight Control System
+Using this module, we aimed to calculate the speed data by calculating the distance covered per unit time using satellite data. However, we were unable to make the module work for a long time due to the fact that the module we received from the place we bought it was defective. After further investigations, we decided that the module was indeed defective. Then, we completed the process by soldering the headers of the new GPS module we obtained. With this, we were able to measure speed, and we used this speed data in the algorithm we created for risk calculation.
+• ADXL345 3-Axis Accelerometer
+With this sensor, we calculated the instantaneous G-force. We calculated the G-force in the X and Y directions to calculate sudden braking and lateral tilting of the car in the vertical and horizontal axis. This way, when the car takes an action that would cause sudden risk, the risk output becomes affected.
+• HC-SR04 Ultrasonic Distance Sensor
+We used two of these sensors to measure the following distance of the car in front, and by increasing the risk output when the distance is too close. The reason we used two of these sensors is that because the front of the car is large, and because the sensor is designed for use in more minimalist environments, we preferred to use two sensors to get more accurate data.
+• Sound Sensor Card
+We used this sensor for a simple reason, we thought that a high-noise environment inside the car would distract the driver, so we used this sensor to measure the sound in the environment, especially music, in our risk calculation.
+• Light Sensor Card
+We used this sensor because we thought that if the opposing car uses high beams, the driver will have difficulty seeing the road, which will increase the risk. For this reason, we also used the light sensor in our risk output.
+• Rain Sensor Card
+We used this sensor because when it rains, the ground will become wet, and the car's grip on the road will decrease, which will increase the risk.
+• Webcam
+We used a webcam to take a picture of the driver's face and check if the driver is drowsy, which would also increase the risk.
+We also used an RGB LED, a buzzer, and an breadboard to control the whole system.
 
+• CONCLUSION: Were you successful?
+Of course, conducting long scientific studies is necessary to calculate the correct risk data. And considering that there is an expert in each field, it is not very likely for us to do it ourselves, as we do not have expertise in this area. Our goal here was to develop a prototype and convey the general working logic of the system to the project owner. In this regard, we believe that we were extremely successful.
 
-•	UYGULAMA: Neyi neyle nasıl yaptın, neler kullandın…
-Evvela kullandığımız bütün sensör ve modülleri saymakla başlayalım
-
-•	Gy-NEO6MV2 GPS Modülü – Uçuş Kontrol Sistemi
-Bu modülü kullanarak birim zamanda kat ettiğimiz mesafeyi uydudan gelen veri ile hesaplayarak hız verisi elde etmeyi amaçladık. Bu modülü kullanırken satın aldığımız yerin bize bozuk modül göndermesi sebebiyle uzun süre modülü çalıştırmayı başaramadık. Daha sonra yaptığımız tetkikler neticesinde modülün bozuk olduğuna karar verdik. Yeni temin ettiğimiz GPS modülünün headerslarını lehimleyerek işlemi tamamladık. Bu sayede hız ölçebilir hale geldik ve risk hesaplaması için oluşturduğumuz algoritma içerisinde bu hız verisinden yararlandık. 
-
-•	ADXL345 3 Eksen İvme Ölçer
-Bu sensör sayesinde anlık G kuvvetini hesapladık. X ve Y yönlerinden alınan G kuvvetini hesaplayarak otomobilin yan ve dikey eksende gösterdiği ani fren ve yan yatmaları hesapladık. Bu sayede otomobil ani risk oluşturacak bir eylemde bulunduğunda risk çıktısını etkiler hale geldi. 
-
-•	HC-SR04 Ultrasonik Mesafe Sensörü 
-Bu sensörden iki tane aracın ön kısmına yerleştirerek öndeki araç ile takip mesafesini ölçmeyi, çok yakınlaşılması halinde risk çıktısını artırmasını sağladık. Burada bu sensörden iki tane kullanmamızın sebebi aracın önünün büyük olması ve bu sensörün daha minimalist ortamlarda kullanılacak şekilde tasarlanması sebebiyle daha doğru veri alabilmek için iki tane kullanmayı tercih ettik.
-
-•	Ses Sensörü Kartı
-Bunu kullanmamızın aslında çok basit bir sebebi var araç içinde oluşacak yüksek sesli ortamın sürücünün dikkatini dağıtacağını düşündüğümüzden bu sensör ile ortamdaki özellikle müzik sesini ölçümleyerek risk hesabımızda kullandık.
-
-•	Işık Sensörü Kartı 
-Bunu kullanma sebebimiz ise karşıdan gelen otomobilin uzun far kullanması halinde yüksek ışığa maruz kalan sürücünün yolu görmesi güçleşeceğinden riski artıracaktır. Bu sebeple risk çıktımızda ışık sensörü de kullandık. 
-
-•	Yağmur Sensörü Kartı 
-Yağmur yağması durumunda yerler ıslanacağından otomobilin yola tutunması güçleşecektir. Bu da ister istemez riski artıracaktır. Burada bu sensör ile yağmur yağıp yağmadığını ölçerek risk hesabımız içerisine dahil ettik. 
-
-•	Kamera(Webcam)
-Kamera ile OpenCV kütüphanesi kullanarak göz kapakçıklarının kapalı kalma süresini ölçen bir kod ile sürücünün yorgunluğunu hesapladık.
-
-•	NeoPixel 8’li Adreslenebilir RGB Led Şerit
-Burada bütün bu sensörleri kullanarak elde ettiğimiz risk çıktısını görsel olarak sürücüye bildirmek için bu şekilde adreslenebilir bir led kullandık. Risk her yüzde 12.5 artış gösterdiğinde şeritteki ledler sırasıyla yanar hale gelmekte. Bu sayede sayısal çıktıyı görsel çıktı haline getirerek sürücü tarafından anlaşılmasını kolaylaştırdık.
-
-•	Buzzer
-Buzzer kullanma amacımız risk çok yüksek noktalara ulaştığında sürücüyü sesli olarak da ikaz ederek uyarılmasını kuvvetlendirdik.
-
-•	Jumper Kablo 
-Veri iletimi ve güç için kullandık.
-
-•	10K ¼ Ω Direnç 
-Mesafe sensöründe kullandık.
-
-•	Breadboard
-Sensörlere güç vermek için ve ana iskeleti oluşturmak için kullandık. 
-
-•	Risk Hesaplama Algoritması
-Kendimizin yazdığı bir algoritma sayesinde bütün sensörlerden gelen veriyi belirli hesaplamalardan geçirerek yüzde cinsinden bir risk çıktısı aldık. Bu algoritma bütün sensörlerden aynı anda veri alıyor ve aynı anda bunu işliyor bu sayede sensör/modüllerin birbirleriyle senkron çalışması sağlanarak risk hesaplanıyor.
-Örneğin ivmeölçerden aldığımız g kuvveti verisi, GPS modülünden aldığımız veri ile senkron çalışarak riskin katlanarak artmasını sağlıyor. Burada 6 sensör/modül ve kameradan gelen veriyi anlık olarak hesaplamaya tabi tutup, riski bu şekilde hesapladığını da belirtmek istiyoruz.
-	
-
-•	SONUÇ: Başarılı oldun mu?
-Elbette tamamen doğru risk verisi hesaplamak için uzun bilimsel çalışmalar yürütmek gerekiyor. Ve her alanın kendi uzmanı olduğunu düşünüldüğünde bunu bizim yapabilmemiz pek mümkün değildi. Zira bu konuda uzmanlığa sahip değiliz. Amacımız burada bir prototip geliştirerek sistemin genel çalışma mantığını proje sahibine aktarmak oldu. Bu konuda da son derece başarılı olduğumuzu düşünüyoruz. 
